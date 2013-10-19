@@ -1,4 +1,4 @@
-$(function() { 
+jQuery(document).ready(function($) {
 
 $('#gcf').gCalFlow({
   calid: 'sjft45afbqbv91pudr1sfctgbk@group.calendar.google.com',
