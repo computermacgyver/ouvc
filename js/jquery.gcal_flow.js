@@ -54,11 +54,13 @@
       globalize_fmt_date: 'D',
       globalize_fmt_time: 't',
       globalize_fmt_monthday: 'M',
-      date_formatter: function(d, allday_p) {
+      date_formatter: function(d, allday_p, timeonly) {
         var fmtstr;
         if ((typeof Globalize !== "undefined" && Globalize !== null) && (Globalize.format != null)) {
           if (allday_p) {
             fmtstr = this.globalize_fmt_date;
+          } else if (timeonly) {
+          	fmtstr = this.globalize_fmt_time;
           } else {
             fmtstr = this.globalize_fmt_datetime;
           }
@@ -206,6 +208,7 @@
       }
       if ((feed.entry != null) && feed.entry.length > 0) {
         _ref2 = feed.entry.slice(0, +this.opts.maxitem + 1 || 9e9);
+        var previous_date="";
         for (_i = 0, _len = _ref2.length; _i < _len; _i++) {
           ent = _ref2[_i];
           log.debug("formatting entry:", ent);
@@ -213,9 +216,23 @@
           if (ent.gd$when) {
             st = ent.gd$when[0].startTime;
             sd = this.parse_date(st);
-            stf = this.opts.date_formatter(sd, st.indexOf(':') < 0);
-            ci.find('.gcf-item-date').html(stf);
-            ci.find('.gcf-item-start-date').html(stf);
+            var all_day = st.indexOf(':') < 0;
+            stf = this.opts.date_formatter(sd, all_day);
+            var dates = this.opts.date_formatter(sd, true, true);
+            if (all_day) {
+	            ci.find('.gcf-item-date').html(stf);
+            	ci.find('.gcf-item-start-date').html(stf);
+            	ci.find('.gcf-item-start-time').remove();
+            } else {
+	            ci.find('.gcf-item-date').html(dates);/*Date only*/
+            	ci.find('.gcf-item-start-time').html(this.opts.date_formatter(sd, all_day, true));
+            }
+            
+            if (this.opts.group_by_day && dates==previous_date) {
+            	ci.find('.gcf-item-date').remove()
+            }
+            previous_date=dates;
+            
             et = ent.gd$when[0].endTime;
             ed = this.parse_date(et);
             etf = this.opts.date_formatter(ed, et.indexOf(':') < 0);

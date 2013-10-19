@@ -9,7 +9,6 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
-	<link href='http://fonts.googleapis.com/css?family=IM+Fell+French+Canon+SC' rel='stylesheet' type='text/css'>
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/jquery.gcal_flow.css" rel="stylesheet">
     <style type="text/css">
@@ -63,6 +62,40 @@
       .gCalFlow .gcf-item-container-block {
       	overflow-x:hidden;
       	overflow-y: hidden;
+      }
+      
+      .gCalFlow .gcf-item-block {
+      	border: none;
+      }
+      
+      .gCalFlow .gcf-item-date {
+      	font-weight: bold;
+      }
+      
+      .event-w1 .square {
+      	background-color: blue;
+      }
+      .event-w2 .square {
+      	background-color: orange;
+      }
+      .event-wnvl .square {
+      	background-color: yellow;
+      }
+      .event-m1 .square {
+      	background-color: red;
+      }
+      .event-m2 .square{
+      	background-color: green;
+      }
+      .event-mnvl .square {
+      	background-color: purple;
+      }
+      .square {
+      	display: block;
+      	float: left;
+      	height: 15px;
+      	width: 15px;
+      	margin-right: 10px;
       }
     </style>
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
@@ -205,16 +238,16 @@
         <div id="gcf" class="span3">
         
   <div class="gcf-item-container-block">
-  	<div class="gcf-date-block">
 		<div class="gcf-item-block">
 		  <div class="gcf-item-header-block">
 		    <div class="gcf-item-title-block">
-		      <strong class="gcf-item-title">Loading...</strong>
-		      (<span class="gcf-item-date">&nbsp;</span>)
+		      <div class="gcf-item-date">&nbsp;</div>
+		      <span class="gcf-item-start-time">&nbsp;</span>
+		      <span class="square">&nbsp;</span>
+		      <span class="gcf-item-title">Loading...</span>
 		    </div>
 		  </div>
 		</div>
-	</div>
   </div>
 
         </div>
@@ -325,17 +358,32 @@
     <script src="js/bootstrap.js"></script>
     <script src="js/jquery.gcal_flow.js"></script>
 <script type="text/javascript">
-$(function() { $('#gcf').gCalFlow({
+$(function() { 
+
+$('#gcf').gCalFlow({
   calid: 'sjft45afbqbv91pudr1sfctgbk@group.calendar.google.com',
   auto_scroll: false,
   link_title: true, /*Caendar title has link*/
   link_item_title: false,
   globalize_fmt_datetime: "dddd', 'dd' 'MMM' 'yyyy' 'HH':'mm",
   globalize_fmt_date: "dddd', 'MMM' 'dd",
-  globalize_fmt_time: "hh':'mm",
-  globalize_fmt_monthday: "MMM"
-  
-});});
+  globalize_fmt_time: "HH':'mm",
+  globalize_fmt_monthday: "MMM",
+  group_by_day: true,
+  maxitem: 10,
+  callback: function(){
+	console.log($(".gcf-item-title"));
+	$(".gcf-item-block:contains('M1')").addClass("event-m1");
+	$(".gcf-item-block:contains('M2')").addClass("event-m2");
+	$(".gcf-item-block:contains('MNVL')").addClass("event-mnvl");
+	$(".gcf-item-block:contains('W1')").addClass("event-w1");
+	$(".gcf-item-block:contains('W2')").addClass("event-w2");
+	$(".gcf-item-block:contains('WNVL')").addClass("event-wnvl");
+ }
+
+});
+});
+
 </script>
 
   </body>
