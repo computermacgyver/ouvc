@@ -1,3 +1,23 @@
+/*
+Theme Name: OUVC Bootstrap
+Theme URI: 
+Description: 
+Author: Scott A. Hale
+Author URI: http://www.scotthale.net/
+Version: 1.0
+Tags: responsive, white, bootstrap
+
+License: Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
+License URI: http://creativecommons.org/licenses/by-sa/3.0/
+
+This simple theme was built using the example Bootstrap theme "Basic marketing site" found on the Bootstrap web site http://twitter.github.com/bootstrap/examples/hero.html
+See reference  at http://blog.teamtreehouse.com/responsive-wordpress-bootstrap-theme-tutorial
+*/
+
+@import url("css/bootstrap.css");
+@import url("css/jquery.gcal_flow.css");
+@import url("css/bootstrap-responsive.css");
+
 body {
 	padding-top: 0px;
 	padding-bottom: 40px;
