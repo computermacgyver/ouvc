@@ -379,60 +379,58 @@ $('#gcf').gCalFlow({
 
 });
 
- 
+function cleanHTML(txt) {
+	txt=txt.replace(/<img [^>]*>/g,"");
+	txt=txt.replace(/<a [^>]*>/g,"");
+	txt=txt.replace(/<\/a>/g,"");
+	//txt=txt.replace(/<link[^>]*>/g,"");
+	return txt;
+}
+
+//Uses YQL to avoid cross-site issues
 $.ajax({
     url: "http://www.volleyballengland.org/competitions/national_volleyball_league/league_tables?comp=VE1&division=VE24880327",
     type: 'GET',
+	xpath: "//div[@class='leaguetablehold']/table",
     success: function(res) {
-    	var txt=res.responseText;
-    	txt=txt.replace(/<img [^>]*>/g,"")
-    	txt=txt.replace(/<a [^>]*>/g,"")
-    	txt=txt.replace(/<\/a>/g,"")
-    	txt=$(txt).find(".leaguetablehold");
-    	//txt.find("a").remove();
+    	var txt=cleanHTML(res.responseText);
         $("#mnvl").html(txt);
     }
 });
 
 
-function cleanHTML(txt) {
-	txt=txt.replace(/<img [^>]*>/g,"");
-	txt=txt.replace(/<a [^>]*>/g,"");
-	txt=txt.replace(/<\/a>/g,"");
-	txt=txt.replace(/<link[^>]*>/g,"");
-	txt=txt.replace(/<style[^>]+?\/>|<style(.|\s)*?\/style>/gi, '');
-	console.log(txt);
-	return txt;
-}
+
 
 $.ajax({
     url: "http://www.volleyballengland.org/competitions/national_volleyball_league/league_tables?comp=VE1&division=VE42626507",
     type: 'GET',
+	xpath: "//div[@class='leaguetablehold']/table",
     success: function(res) {
     	var txt=cleanHTML(res.responseText);
-    	txt=$(txt).find(".leaguetablehold");
-    	//txt.find("a").remove();
         $("#wnvl").html(txt);
     }
 });
 
+
 $.ajax({
     url: "http://www.bucs.org.uk/bucscore/EmbedLeague.aspx?id=2607",
     type: 'GET',
+    xpath: "//div[@class='main-table']/table",
     success: function(res) {
     	var txt=cleanHTML(res.responseText);
         $("#m1").html(txt);
     }
 });
 
-/*$.ajax({
+$.ajax({
     url: "http://www.bucs.org.uk/bucscore/EmbedLeague.aspx?id=2622",
     type: 'GET',
+    xpath: "//div[@class='main-table']/table",
     success: function(res) {
-    	var txt=res.responseText;
+    	var txt=cleanHTML(res.responseText);
         $("#w1").html(txt);
     }
-});*/
+});
 
 
 
