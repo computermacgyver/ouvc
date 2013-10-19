@@ -148,6 +148,13 @@
       	padding-right: 5px;
       }
       
+      .highlight {/*highlight oxford in table*/
+      	background-color: #666;
+      	margin-bottom: 10px;
+      	margin-top: 10px;
+      	
+      }
+      
       /*Monika's colors*/
       .nav-tabs {
       	border:none;
@@ -458,6 +465,7 @@ $.ajax({
     success: function(res) {
     	var txt=cleanHTML(res.responseText);
         $("#mnvl").html(txt);
+		$("#mnvl tr:contains('Oxford')").addClass("highlight");
     }
 });
 
@@ -471,6 +479,7 @@ $.ajax({
     success: function(res) {
     	var txt=cleanHTML(res.responseText);
         $("#wnvl").html(txt);
+		$("#wnvl tr:contains('Oxford')").addClass("highlight");
     }
 });
 
@@ -482,6 +491,7 @@ $.ajax({
     success: function(res) {
     	var txt=cleanHTML(res.responseText);
         $("#m1").html(txt);
+		$("#m1 tr:contains('Oxford')").addClass("highlight");
     }
 });
 
@@ -492,6 +502,7 @@ $.ajax({
     success: function(res) {
     	var txt=cleanHTML(res.responseText);
         $("#w1").html(txt);
+		$("#w1 tr:contains('Oxford')").addClass("highlight");
     }
 });
 
