@@ -264,15 +264,13 @@
             </ul>
             <div id="menTabsContent" class="tab-content">
               <div class="tab-pane fade in active" id="m1">
-              
-<iframe src="http://www.bucs.org.uk/bucscore/EmbedLeague.aspx?id=2607" width="454" height="300" frameborder="0"></iframe>
-
+              <!--holder-->
               </div>
               <div class="tab-pane fade" id="m2">
                 <p>Coming soon...</p>
               </div>
               <div class="tab-pane fade" id="mnvl">
-               <iframe src="http://www.ouvc.net/tables/mnvl_results.html" width="454" height="300" frameborder="0"></iframe>
+               <!--<iframe src="http://www.ouvc.net/tables/mnvl_results.html" width="454" height="300" frameborder="0"></iframe>-->
               </div>
           </div>
 
@@ -289,8 +287,6 @@
             <div id="womenTabsContent" class="tab-content">
               <div class="tab-pane fade in active" id="w1">
               
-<iframe src="http://www.bucs.org.uk/bucscore/EmbedLeague.aspx?id=2622" width="454" height="300" frameborder="0"></iframe>
-
               </div>
               <div class="tab-pane fade" id="w2">
                 <p>Coming soon...</p>
@@ -357,6 +353,7 @@
     <script src="js/globalize.culture.en-GB.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/jquery.gcal_flow.js"></script>
+    <script src="js/jquery.xdomainajax.js"></script>
 <script type="text/javascript">
 $(function() { 
 
@@ -372,7 +369,6 @@ $('#gcf').gCalFlow({
   group_by_day: true,
   maxitem: 10,
   callback: function(){
-	console.log($(".gcf-item-title"));
 	$(".gcf-item-block:contains('M1')").addClass("event-m1");
 	$(".gcf-item-block:contains('M2')").addClass("event-m2");
 	$(".gcf-item-block:contains('MNVL')").addClass("event-mnvl");
@@ -382,6 +378,64 @@ $('#gcf').gCalFlow({
  }
 
 });
+
+ 
+$.ajax({
+    url: "http://www.volleyballengland.org/competitions/national_volleyball_league/league_tables?comp=VE1&division=VE24880327",
+    type: 'GET',
+    success: function(res) {
+    	var txt=res.responseText;
+    	txt=txt.replace(/<img [^>]*>/g,"")
+    	txt=txt.replace(/<a [^>]*>/g,"")
+    	txt=txt.replace(/<\/a>/g,"")
+    	txt=$(txt).find(".leaguetablehold");
+    	//txt.find("a").remove();
+        $("#mnvl").html(txt);
+    }
+});
+
+
+function cleanHTML(txt) {
+	txt=txt.replace(/<img [^>]*>/g,"")
+	txt=txt.replace(/<a [^>]*>/g,"")
+	txt=txt.replace(/<\/a>/g,"")
+	txt=txt.replace(/<script[^>]*>.*<script\/>/gm,"")
+	txt=txt.replace(/<link[^>]*>/g,"")
+	console.log(txt);
+	return txt;
+}
+
+$.ajax({
+    url: "http://www.volleyballengland.org/competitions/national_volleyball_league/league_tables?comp=VE1&division=VE42626507",
+    type: 'GET',
+    success: function(res) {
+    	var txt=cleanHTML(res.responseText);
+    	txt=$(txt).find(".leaguetablehold");
+    	//txt.find("a").remove();
+        $("#wnvl").html(txt);
+    }
+});
+
+$.ajax({
+    url: "http://www.bucs.org.uk/bucscore/EmbedLeague.aspx?id=2607",
+    type: 'GET',
+    success: function(res) {
+    	var txt=cleanHTML(res.responseText);
+        $("#m1").html(txt);
+    }
+});
+
+/*$.ajax({
+    url: "http://www.bucs.org.uk/bucscore/EmbedLeague.aspx?id=2622",
+    type: 'GET',
+    success: function(res) {
+    	var txt=res.responseText;
+        $("#w1").html(txt);
+    }
+});*/
+
+
+
 });
 
 </script>
