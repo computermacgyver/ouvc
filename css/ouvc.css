@@ -1,0 +1,156 @@
+body {
+	padding-top: 0px;
+	padding-bottom: 40px;
+	/*background-image: url('tmp/bg01.jpg');
+	background-position:right top;
+	background-repeat:no-repeat;
+	background-image: url('tmp/bgpattern.jpg');*/
+	background-color:#222;
+	color: #EEE;
+	
+}
+
+p {
+	font-size: 110%;
+}
+
+.navbar-inverse .brand, .navbar-inverse .nav li a {
+	color:#CCC;
+}
+
+.sidebar-nav {
+	padding: 9px 0;
+}
+
+.dropdown-menu {
+	background-color: #666;
+}
+
+.nav-header {
+	font-size: 10pt;
+	color: #CCC;
+}
+
+.dropdown-menu li a {
+	color: #FFF;
+}
+
+.nav-tabs li a {
+	color: #FFF
+}
+
+/*Calendar (see http://sugi.github.io/jquery-gcal-flow/*/
+.gcf-header-block, .gcf-item-body-block, .gcf-last-update-block {
+	display:none;
+}
+	  
+.gCalFlow {
+	background-color: #222;
+	background: none;
+	width: 100%;
+	border: none;
+	color: #CCC;
+}
+
+.gCalFlow .gcf-item-container-block {
+	overflow-x:hidden;
+	overflow-y: hidden;
+}
+
+.gCalFlow .gcf-item-block {
+	border: none;
+	padding: 3px 3px;
+}
+
+.gCalFlow .gcf-item-date {
+	font-weight: bold;
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+
+.gCalFlow .gcf-item-title-block {
+	text-shadow: none;
+}
+
+.event-w1 .square {
+	background-color: blue;
+}
+#w1 {
+	border-top: 1px solid blue;
+}
+.event-w2 .square {
+	background-color: orange;
+}
+#w2 {
+	border-top: 1px solid orange;
+}
+.event-wnvl .square {
+	background-color: yellow;
+}
+#wnvl {
+	border-top: 1px solid yellow;
+}
+.event-m1 .square {
+	background-color: red;
+}
+#m1 {
+	border-top: 1px solid red;
+}
+.event-m2 .square{
+	background-color: green;
+}
+#m2 {
+	border-top: 1px solid green;
+}
+.event-mnvl .square {
+	background-color: purple;
+}
+#mnvl {
+	border-top: 1px solid purple;
+}
+.square {
+	display: block;
+	float: left;
+	height: 15px;
+	width: 15px;
+	margin-right: 10px;
+}
+
+/*Style BUCS tables (M1,W1) and NVL (EVA) tables*/
+#m1 table, #w1 table{
+	width:100%;
+}
+/*#m1 .cell-title, #w1 .cell-title {
+	color:#000;
+}*/
+
+#m1 p, #w1 p, #mnvl p, #wnvl p {
+	margin:0;
+	display:inline;
+}
+
+#m1 td, #w1 td, #mnvl td, #wnvl td {
+	padding-bottom: 5px;
+	padding-right: 5px;
+}
+
+.highlight {/*highlight oxford in table*/
+	background-color: #666;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	
+}
+
+/*Monika's colors*/
+.nav-tabs {
+	border:none;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+.nav-tabs ul {
+	margin-bottom: 0;
+}
+.tab-pane {
+	  padding-top: 20px;
+}
+
