@@ -396,11 +396,11 @@ $.ajax({
 
 
 function cleanHTML(txt) {
-	txt=txt.replace(/<img [^>]*>/g,"")
-	txt=txt.replace(/<a [^>]*>/g,"")
-	txt=txt.replace(/<\/a>/g,"")
-	txt=txt.replace(/<script[^>]*>.*<script\/>/gm,"")
-	txt=txt.replace(/<link[^>]*>/g,"")
+	txt=txt.replace(/<img [^>]*>/g,"");
+	txt=txt.replace(/<a [^>]*>/g,"");
+	txt=txt.replace(/<\/a>/g,"");
+	txt=txt.replace(/<link[^>]*>/g,"");
+	txt=txt.replace(/<style[^>]+?\/>|<style(.|\s)*?\/style>/gi, '');
 	console.log(txt);
 	return txt;
 }
