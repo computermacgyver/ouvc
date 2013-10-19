@@ -1,12 +1,7 @@
 .gCalFlow {
-  /*position: relative;
-  width: 300px;
-  height: 400px;
-  float: left;
-  font-size: 90%;*/
   overflow: hidden;
   text-decoration: none;
-  padding-bottom: 0.5em; }
+}
   .gCalFlow a, .gCalFlow a:visited, .gCalFlow a:hover {
     color: inherit;
     _color: black;
@@ -66,7 +61,7 @@
   background: linear-gradient(to bottom, white, #eeeeee);
   filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr=#ffffffff,EndColorStr=#ffeeeeee);
   zoom: 1;
-  color: blak; }
+  color: #000; }
   .gCalFlow .gcf-header-block {
     -webkit-border-top-left-radius: 4px;
     -webkit-border-top-right-radius: 4px;
