@@ -150,4 +150,15 @@ if ( have_posts() ) : while ( have_posts() && $count<$MAX_POSTS) : the_post(); $
         </div><!--/span-->
 <!--      </div><!--/row-->
 
-<?php get_footer(); ?>
+ <?php 
+ wp_enqueue_script("globalize");
+ wp_enqueue_script("globalize-enGB"); 
+ wp_enqueue_script("jquery-gcal"); 
+ wp_enqueue_script("jquery-xdomain");
+ wp_enqueue_script("removecontent");    
+ 
+ 
+ get_footer();
+ ?>
+
+

@@ -2,25 +2,28 @@
 
 require_once('bootstrap_walker.php'); 
 
-function wpbootstrap_scripts_with_jquery()
-{
+function wpbootstrap_scripts_with_jquery() {
 //wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer );
 
 	// Register the script like this for a theme:
 	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.js', array( 'jquery' ),"",true );
-	
-	//Rest are homepage only
-	wp_enqueue_script( 'globalize', get_template_directory_uri() . '/js/globalize.js', array( 'bootstrap' ), "",true );
-	wp_enqueue_script( 'globalize-enGB', get_template_directory_uri() . '/js/globalize.culture.en-GB.js', array( 'bootstrap' ), "",true );
-
-	wp_enqueue_script( 'jquery-gcal', get_template_directory_uri() . '/js/jquery.gcal_flow.js', array( 'jquery' ), "",true );
-	wp_enqueue_script( 'jquery-xdomain', get_template_directory_uri() . '/js/jquery.xdomainajax.js', array( 'jquery' ), "",true );
-	wp_enqueue_script( 'removecontent', get_template_directory_uri() . '/js/remotecontent.js', array( 'jquery','jquery-gcal','jquery-xdomain' ), "",true );
 
 }
 add_action( 'wp_enqueue_scripts', 'wpbootstrap_scripts_with_jquery' );
 
+function ouvc_scripts_gcal() {
+	wp_register_script( 'globalize', get_template_directory_uri() . '/js/globalize.js', array( 'bootstrap' ), "",true );
+	wp_register_script( 'globalize-enGB', get_template_directory_uri() . '/js/globalize.culture.en-GB.js', array( 'bootstrap' ), "",true );
+	wp_register_script( 'jquery-gcal', get_template_directory_uri() . '/js/jquery.gcal_flow.js', array( 'jquery' ), "",true );
+}
+add_action( 'wp_enqueue_scripts', 'ouvc_scripts_gcal' );
 
+function ouvc_scripts_leaguetables() {
+	wp_register_script( 'jquery-xdomain', get_template_directory_uri() . '/js/jquery.xdomainajax.js', array( 'jquery' ), "",true );
+	wp_register_script( 'removecontent', get_template_directory_uri() . '/js/remotecontent.js', array( 'jquery','jquery-gcal','jquery-xdomain' ), "",true );
+}
+
+add_action( 'wp_enqueue_scripts', 'ouvc_scripts_leaguetables' );
 
 function ouvc_main_nav() {
 	// display the wp3 menu if available
